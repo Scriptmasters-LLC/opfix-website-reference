@@ -279,6 +279,7 @@ const selClasses = ["sel-0","sel-1","sel-2","sel-3"];
 var scores = new Array(40).fill(-1);
 var currentPillar = 0;
 var maxScore = 270;
+var gateContact = null; // populated after gate submission, used to pre-fill booking widget
 
 var app = document.getElementById('diagnostic-app');
 
@@ -538,6 +539,7 @@ function submitGate() {
     return res.json();
   })
   .then(function() {
+    gateContact = { firstName: firstName, lastName: lastName, email: email, phone: phone };
     var overlay = document.getElementById('contact-gate');
     if (overlay) overlay.remove();
     renderResults();
@@ -620,6 +622,18 @@ function renderResults() {
   app.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
+function buildBookingUrl() {
+  var base = 'https://crm.advisorhub.io/widget/booking/O5v0VLDLbAg4sVEgBHpG';
+  if (!gateContact) return base;
+  var params = new URLSearchParams({
+    first_name: gateContact.firstName,
+    last_name:  gateContact.lastName,
+    email:      gateContact.email,
+    phone:      gateContact.phone
+  });
+  return base + '?' + params.toString();
+}
+
 window.openBookingModal = function() {
   if (document.getElementById('booking-modal')) return;
 
@@ -633,7 +647,7 @@ window.openBookingModal = function() {
         '<button class="booking-modal-close" onclick="closeBookingModal()" aria-label="Close">&times;</button>' +
       '</div>' +
       '<div class="booking-modal-body">' +
-        '<iframe src="https://crm.advisorhub.io/widget/booking/O5v0VLDLbAg4sVEgBHpG" scrolling="no" id="O5v0VLDLbAg4sVEgBHpG_booking"></iframe>' +
+        '<iframe src="' + buildBookingUrl() + '" scrolling="no" id="O5v0VLDLbAg4sVEgBHpG_booking"></iframe>' +
       '</div>' +
     '</div>';
 
