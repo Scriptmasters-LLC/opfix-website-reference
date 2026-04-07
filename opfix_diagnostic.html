@@ -186,6 +186,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 // ─── GHL INTEGRATION ──────────────────────────────────────────────────────────
 var GHL_LOCATION_ID = 'dqU7ufz23PNRXzYvkHZy';
 var GHL_TOKEN = 'pit-aa68d803-3e25-4dd2-a7c6-02de0bbc9284';
+var GHL_WORKFLOW_ID = '01f42c1c-6b3d-44da-8579-ec6ba05634ed';
 
 // GHL custom field keys (from your location's merge tags)
 var CF = {
@@ -528,6 +529,19 @@ function submitGate() {
       return res.json().then(function(d) { throw new Error(d.message || 'Submission failed (status ' + res.status + ')'); });
     }
     return res.json();
+  })
+  .then(function(data) {
+    var contactId = data && data.contact && data.contact.id;
+    if (contactId && GHL_WORKFLOW_ID) {
+      return fetch('https://services.leadconnectorhq.com/contacts/' + contactId + '/workflow/' + GHL_WORKFLOW_ID, {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + GHL_TOKEN,
+          'Content-Type': 'application/json',
+          'Version': '2021-07-28'
+        }
+      }).catch(function() {}); // non-blocking — don't fail results if workflow enroll fails
+    }
   })
   .then(function() {
     var overlay = document.getElementById('contact-gate');
