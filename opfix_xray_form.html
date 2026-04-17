@@ -745,8 +745,15 @@ function handleSubmit() {
   FACTORS.forEach(f=>{ pt[f.p]+=(scores[f.id]||0)*f.wt; pImp[f.p]+=calcImpact(scores[f.id]||0,revenue); });
   const totalImp = Object.values(pImp).reduce((a,b)=>a+b,0);
 
+  const clientName = document.getElementById('f-name').value.trim();
+  const nameParts  = clientName.split(/\s+/);
+  const firstName  = nameParts.shift() || '';
+  const lastName   = nameParts.join(' ');
+
   const payload = {
-    client_name:    document.getElementById('f-name').value.trim(),
+    client_name:    clientName,
+    first_name:     firstName,
+    last_name:      lastName,
     business_name:  document.getElementById('f-biz').value.trim(),
     email:          document.getElementById('f-email').value.trim(),
     phone:          document.getElementById('f-phone').value.trim(),
