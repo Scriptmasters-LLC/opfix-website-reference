@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="OpFix_Favicon_dark_32px.svg">
+<title>Built to Break | OpFix</title>
+<meta name="description" content="Built to Break by Damon Aleczander - the hidden patterns that make founder-led businesses break, and what to do about them.">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-blue: #3B82F6;
+    --blue-dark: #2563EB;
+    --black: #0A0A0A;
+    --dark: #1A1A1A;
+    --muted: #64748B;
+    --white: #FFFFFF;
+    --accent: #C81E2D;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── SITE NAV ── */
+  .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 48px;height:72px;display:flex;align-items:center;justify-content:space-between;background:#060F1F;backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav-logo img{height:64px;width:auto}
+  .nav-links{display:flex;align-items:center;gap:36px}
+  .nav-links a{font-size:14px;font-weight:500;color:#D1D5DB;transition:color .2s;letter-spacing:.2px;text-decoration:none}
+  .nav-links a:hover{color:#fff}
+  .nav-cta{font-size:14px;font-weight:600;color:#fff!important;background:#C81E2D;padding:10px 22px;border-radius:8px;transition:background .2s;text-decoration:none}
+  .nav-cta:hover{background:#a8182a}
+
+  /* ── SITE FOOTER ── */
+  .site-footer{background:#0B1D3A;padding:48px;color:#6B7280}
+  .site-footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+  .site-footer-left{font-size:14px}
+  .site-footer-links{display:flex;gap:28px;flex-wrap:wrap}
+  .site-footer-links a{font-size:13px;color:#6B7280;transition:color .2s;text-decoration:none}
+  .site-footer-links a:hover{color:#fff}
+
+  /* ── BOOK HERO ── */
+  .book-hero {
+    padding: 160px 40px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .book-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center top, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .book-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--brand-blue);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.15s;
+  }
+
+  .book-cover-hero {
+    width: 280px;
+    height: auto;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
+    display: block;
+    margin: 0 auto 40px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.3s;
+  }
+
+  .book-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.45s;
+  }
+
+  .book-title .accent { color: var(--brand-blue); }
+
+  .book-tagline {
+    font-size: clamp(17px, 2vw, 20px);
+    font-style: italic;
+    color: #94A3B8;
+    line-height: 1.5;
+    max-width: 720px;
+    margin: 0 auto 40px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.6s;
+  }
+
+  .book-cta-primary {
+    display: inline-block;
+    padding: 18px 40px;
+    background: var(--brand-blue);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.75s;
+  }
+
+  .book-cta-primary:hover {
+    background: var(--blue-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(59, 130, 246, 0.3);
+  }
+
+  /* ── BOOK BODY / DESCRIPTION ── */
+  .book-body {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .body-section { margin-bottom: 56px; }
+  .body-section:last-child { margin-bottom: 0; }
+
+  .body-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--brand-blue);
+    margin-bottom: 16px;
+  }
+
+  .body-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 20px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+
+  .body-text {
+    font-size: 17px;
+    color: #B8C5D6;
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+
+  .body-text:last-child { margin-bottom: 0; }
+
+  /* ── AUTHOR SECTION ── */
+  .author-section {
+    background: linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.04) 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 80px 40px;
+  }
+
+  .author-inner {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .author-card {
+    background: var(--dark);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    border-radius: 12px;
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .author-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--brand-blue);
+  }
+
+  .author-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--brand-blue);
+    margin-bottom: 16px;
+  }
+
+  .author-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 3.5vw, 36px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+
+  .author-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--brand-blue);
+    margin-bottom: 28px;
+    letter-spacing: 0.5px;
+  }
+
+  .author-bio {
+    font-size: 16px;
+    color: #B8C5D6;
+    line-height: 1.7;
+  }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    text-align: center;
+    padding: 80px 40px 120px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .final-cta-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 16px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+  }
+
+  .final-cta-sub {
+    font-size: 16px;
+    color: #94A3B8;
+    margin-bottom: 32px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+
+  .final-cta-button {
+    display: inline-block;
+    padding: 18px 40px;
+    background: var(--brand-blue);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .final-cta-button:hover {
+    background: var(--blue-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(59, 130, 246, 0.3);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav { padding: 0 16px; }
+    .nav-links { display: none; }
+    .book-hero { padding: 110px 24px 60px; }
+    .book-cover-hero { width: 220px; }
+    .book-body { padding: 56px 24px; }
+    .author-section { padding: 56px 24px; }
+    .author-card { padding: 40px 28px; }
+    .final-cta { padding: 56px 24px 80px; }
+    .site-footer { padding: 32px 24px; }
+    .site-footer-inner { flex-direction: column; gap: 24px; text-align: center; }
+  }
+
+  /* ── HAMBURGER ── */
+  .hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px;z-index:101}
+  .hamburger span{display:block;width:24px;height:2px;background:#fff;margin:5px 0;transition:all .3s}
+  .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+  .hamburger.open span:nth-child(2){opacity:0}
+  .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+  .mobile-nav{position:fixed;top:0;left:0;right:0;bottom:0;background:#060F1F;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;pointer-events:none;transition:opacity .3s}
+  .mobile-nav.open{opacity:1;pointer-events:all}
+  .mobile-nav a{font-size:20px;font-weight:500;color:#D1D5DB;text-decoration:none;transition:color .2s}
+  .mobile-nav a:hover{color:#fff}
+  .mobile-nav .mob-cta{background:#C81E2D;color:#fff;padding:14px 32px;border-radius:8px;font-weight:700;font-size:16px;margin-top:12px}
+  .mobile-nav-close{position:absolute;top:20px;right:24px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer}
+  @media(max-width:768px){.hamburger{display:block}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo"><img src="OpFix_Logo__white_.svg" alt="OpFix"></a>
+  <div class="nav-links">
+    <a href="how-it-works.html">How It Works</a>
+    <a href="four-pillars.html">The Four Pillars</a>
+    <a href="the-system.html">The System</a>
+    <a href="book.html" style="color:var(--white)">Book</a>
+    <a href="opfix_diagnostic.html" class="nav-cta">Free Diagnostic →</a>
+  </div>
+  <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- BOOK HERO -->
+<section class="book-hero">
+  <div class="book-eyebrow">A Book by Damon Aleczander</div>
+  <img
+    class="book-cover-hero"
+    src="built_to_break_cover.png"
+    alt="Built to Break by Damon Aleczander - book cover"
+    width="280"
+    height="420"
+  />
+  <h1 class="book-title">Built to <span class="accent">Break</span></h1>
+  <p class="book-tagline">The hidden patterns that make founder-led businesses break - and what to do about them.</p>
+  <a
+    class="book-cta-primary"
+    href="https://www.amazon.com/dp/B0GXSRB5MQ"
+    target="_blank"
+    rel="noopener noreferrer"
+  >View on Amazon →</a>
+</section>
+
+<!-- BOOK BODY -->
+<section class="book-body">
+  <div class="body-section">
+    <div class="body-label">The Premise</div>
+    <h2 class="body-heading">Most founder-led businesses don't fail from bad ideas.</h2>
+    <p class="body-text">They fail from broken structure underneath good ideas.</p>
+    <p class="body-text">The product works. The team is talented. The revenue is real. But the business runs on the founder. Decisions stall when they're out. Cash flow is a mystery until the bank balance moves. Hiring is reactive. Pricing is guessed. Operations are duct tape.</p>
+    <p class="body-text">From the outside it looks like a company. From the inside the founder knows the truth: it's a job that pays well and never sleeps.</p>
+  </div>
+
+  <div class="body-section">
+    <div class="body-label">What's Inside</div>
+    <h2 class="body-heading">The patterns we see in every diagnostic.</h2>
+    <p class="body-text">Built to Break breaks down what's actually happening inside founder-led businesses that look successful but can't scale. The hidden patterns. What causes them. What they cost in dollars, time, and freedom. And why most founders can't see them from the inside.</p>
+    <p class="body-text">It's not theory. It's not motivation. It's a field guide.</p>
+  </div>
+
+  <div class="body-section">
+    <div class="body-label">Who It's For</div>
+    <h2 class="body-heading">Founders running between $500K and $10M.</h2>
+    <p class="body-text">If your business is working, but it can't run a day without you, this book is for you. If you've already read every operations book on the shelf and you're still stuck, this book is for you. If you're tired of being told what successful businesses look like and you want to know why yours doesn't feel like one, this book is for you.</p>
+  </div>
+</section>
+
+<!-- AUTHOR SECTION -->
+<section class="author-section">
+  <div class="author-inner">
+    <div class="author-card">
+      <div class="author-eyebrow">About the Author</div>
+      <h2 class="author-name">Damon Aleczander</h2>
+      <div class="author-role">Founder & CEO, OpFix</div>
+      <p class="author-bio">Personally built two 8-figure annual businesses and four multi-million dollar annual businesses from the ground up. Helped create dozens more through hands-on operational work. A proven systems architect and high-performance operator who saw the same pattern everywhere: founders trapped running operations instead of growing companies. Built OpFix to fix that problem permanently. Designed the Four Pillars Diagnostic, the pricing system, the delivery model, and every system the company runs on.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2 class="final-cta-heading">Ready to read it?</h2>
+  <p class="final-cta-sub">Built to Break is available now on Amazon in paperback and Kindle.</p>
+  <a
+    class="final-cta-button"
+    href="https://www.amazon.com/dp/B0GXSRB5MQ"
+    target="_blank"
+    rel="noopener noreferrer"
+  >Get the Book on Amazon →</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-left">© 2026 OpFix. All rights reserved.</div>
+    <div class="site-footer-links">
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="four-pillars.html">Four Pillars</a>
+      <a href="the-system.html">The System</a>
+      <a href="opfix_diagnostic.html">Free Diagnostic</a>
+      <a href="book.html">Book</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="toggleMobileNav()">✕</button>
+  <a href="index.html" onclick="toggleMobileNav()">Home</a>
+  <a href="how-it-works.html" onclick="toggleMobileNav()">How It Works</a>
+  <a href="four-pillars.html" onclick="toggleMobileNav()">The Four Pillars</a>
+  <a href="the-system.html" onclick="toggleMobileNav()">The System</a>
+  <a href="book.html" onclick="toggleMobileNav()">Book</a>
+  <a href="opfix_diagnostic.html" class="mob-cta">Free Diagnostic →</a>
+</div>
+
+<script>
+function toggleMobileNav(){
+  document.getElementById('mobileNav').classList.toggle('open');
+  document.querySelector('.hamburger').classList.toggle('open');
+}
+</script>
+</body>
+</html>
