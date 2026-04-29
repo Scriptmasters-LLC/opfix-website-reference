@@ -525,9 +525,9 @@ window.submitContext = function() {
     renderDQ('not_owner');
     return;
   }
-  if (ctx.annual_revenue === 'under_100k') {
-    logDisqualification('under_100k');
-    renderDQ('under_100k');
+  if (ctx.annual_revenue === 'under_100k' || ctx.annual_revenue === '100k_500k') {
+    logDisqualification('under_500k');
+    renderDQ('under_500k');
     return;
   }
   if (ctx.annual_revenue === '25m_plus') {
@@ -557,11 +557,11 @@ function renderDQ(reason) {
       ],
       actions: '<button class="diag-btn diag-btn-back" onclick="resetAll()">← Start Over</button>'
     };
-  } else if (reason === 'under_100k') {
+  } else if (reason === 'under_500k') {
     content = {
       icon: '🔧',
       eyebrow: 'You\'re Earlier Than Our Sweet Spot',
-      title: 'Under $100K, the problem isn\'t operations. It\'s offer and volume.',
+      title: 'Under $500K, the problem isn\'t operations. It\'s offer and volume.',
       body: [
         'OpFix installs operational infrastructure for businesses doing $500K+ in revenue. At your stage, fixing ops is like tuning a Ferrari when you need a driver\'s license. We\'d waste your money.',
         '<strong>What actually moves the needle at your stage:</strong> sharpen your offer, build one working lead-gen channel, and close more deals. Once you\'re above $500K and the wheels start wobbling, come back.'
