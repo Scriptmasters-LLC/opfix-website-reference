@@ -118,10 +118,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .diag-results{text-align:center}
 .diag-results h2{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-1px;margin-bottom:8px}
 .diag-tier-badge{display:inline-block;font-size:24px;font-weight:800;padding:12px 32px;border-radius:8px;margin:16px 0 12px;letter-spacing:1px}
-.tier-healthy{background:#ECFDF5;color:#047857}
-.tier-moderate{background:#FEF3C7;color:#B45309}
-.tier-severe{background:#FFEDD5;color:#C2410C}
-.tier-critical{background:#FEE2E2;color:#B91C1C}
+.tier-tuneup{background:#ECFDF5;color:#047857}
+.tier-rebuild{background:#FEF3C7;color:#B45309}
+.tier-overhaul{background:#FFEDD5;color:#C2410C}
+.tier-emergency{background:#FEE2E2;color:#B91C1C}
 .diag-score-display{font-size:48px;font-weight:800;color:var(--navy);letter-spacing:-2px}
 .diag-score-max{font-size:20px;color:var(--gray-300)}
 .diag-severity-pct{font-size:18px;color:var(--gray-400);margin-bottom:32px}
@@ -792,10 +792,10 @@ function calcDiagnosticData() {
 
   var sevPct = Math.round((total / maxScore) * 100);
   var tier, tierClass;
-  if (sevPct <= 15)      { tier = "Healthy";         tierClass = "tier-healthy"; }
-  else if (sevPct <= 35) { tier = "Moderate Bleed";  tierClass = "tier-moderate"; }
-  else if (sevPct <= 60) { tier = "Severe Bleed";    tierClass = "tier-severe"; }
-  else                   { tier = "Critical";        tierClass = "tier-critical"; }
+  if (sevPct <= 21)      { tier = "Tune-Up";   tierClass = "tier-tuneup"; }
+  else if (sevPct <= 50) { tier = "Rebuild";   tierClass = "tier-rebuild"; }
+  else if (sevPct <= 83) { tier = "Overhaul";  tierClass = "tier-overhaul"; }
+  else                   { tier = "Emergency"; tierClass = "tier-emergency"; }
 
   // Engagement price: $15k base + (total_score × $300)
   // At 240 max: $15,000 + (240 × $300) = $87,000

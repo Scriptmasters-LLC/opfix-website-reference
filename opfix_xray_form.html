@@ -613,10 +613,10 @@ function getRevenue() {
   return map[sel] || 0;
 }
 
-function calcImpact(score, revenue) {
+function calcImpact(score, revenue, wt) {
   if (!score || !revenue) return 0;
-  const rate = score === 3 ? 0.015 : score === 2 ? 0.01 : 0.005;
-  return Math.round(revenue * rate * score);
+  const IMPACT_RATE = {1: 0.005, 2: 0.015, 3: 0.03};
+  return Math.round(revenue * IMPACT_RATE[score] * (wt / 3));
 }
 
 function fmtDollar(n) {
@@ -634,7 +634,7 @@ function updateTotals() {
   FACTORS.forEach(f => {
     const s = scores[f.id] || 0;
     pt[f.p] += s * f.wt;
-    const imp = calcImpact(s, revenue);
+    const imp = calcImpact(s, revenue, f.wt);
     pImp[f.p] += imp;
     // Update per-factor impact display
     const impEl = document.getElementById(`imp-${f.id}`);
@@ -755,7 +755,7 @@ function handleSubmit() {
   const {tier} = getTier(total, 0);
   const pt = {ops:0,rev:0,fin:0,team:0};
   const pImp = {ops:0,rev:0,fin:0,team:0};
-  FACTORS.forEach(f=>{ pt[f.p]+=(scores[f.id]||0)*f.wt; pImp[f.p]+=calcImpact(scores[f.id]||0,revenue); });
+  FACTORS.forEach(f=>{ pt[f.p]+=(scores[f.id]||0)*f.wt; pImp[f.p]+=calcImpact(scores[f.id]||0,revenue,f.wt); });
   const totalImp = Object.values(pImp).reduce((a,b)=>a+b,0);
 
   const clientName = document.getElementById('f-name').value.trim();
@@ -798,7 +798,7 @@ function handleSubmit() {
       weight:   f.wt,
       score:    scores[f.id]||0,
       weighted: (scores[f.id]||0)*f.wt,
-      impact:   calcImpact(scores[f.id]||0, revenue),
+      impact:   calcImpact(scores[f.id]||0, revenue, f.wt),
       notes:    (document.getElementById(`nt-${f.id}`)?.value||'').trim(),
     })),
   };
