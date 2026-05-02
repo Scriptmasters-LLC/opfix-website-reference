@@ -343,10 +343,10 @@ footer p{font-size:13px;color:var(--gray-400)}
 
   <!-- PILLAR CARDS -->
   <div class="pillar-summary fade-up">
-    <div class="p-card ops" id="pc-ops"><div class="p-card-name">Ops &amp; Systems</div><div class="p-card-score" id="pcs-ops">0</div><div class="p-card-max">/ 72 pts</div><div class="p-card-bar"><div class="p-card-bar-fill" id="pcb-ops"></div></div></div>
-    <div class="p-card rev" id="pc-rev"><div class="p-card-name">Revenue &amp; Sales</div><div class="p-card-score" id="pcs-rev">0</div><div class="p-card-max">/ 69 pts</div><div class="p-card-bar"><div class="p-card-bar-fill" id="pcb-rev"></div></div></div>
-    <div class="p-card fin" id="pc-fin"><div class="p-card-name">Financial Structure</div><div class="p-card-score" id="pcs-fin">0</div><div class="p-card-max">/ 66 pts</div><div class="p-card-bar"><div class="p-card-bar-fill" id="pcb-fin"></div></div></div>
-    <div class="p-card team" id="pc-team"><div class="p-card-name">Team &amp; Leadership</div><div class="p-card-score" id="pcs-team">0</div><div class="p-card-max">/ 63 pts</div><div class="p-card-bar"><div class="p-card-bar-fill" id="pcb-team"></div></div></div>
+    <div class="p-card ops" id="pc-ops"><div class="p-card-name">Ops &amp; Systems</div><div class="p-card-score" id="pcs-ops">0</div><div class="p-card-max">/ 63 pts</div><div class="p-card-bar"><div class="p-card-bar-fill" id="pcb-ops"></div></div></div>
+    <div class="p-card rev" id="pc-rev"><div class="p-card-name">Revenue &amp; Sales</div><div class="p-card-score" id="pcs-rev">0</div><div class="p-card-max">/ 60 pts</div><div class="p-card-bar"><div class="p-card-bar-fill" id="pcb-rev"></div></div></div>
+    <div class="p-card fin" id="pc-fin"><div class="p-card-name">Financial Structure</div><div class="p-card-score" id="pcs-fin">0</div><div class="p-card-max">/ 60 pts</div><div class="p-card-bar"><div class="p-card-bar-fill" id="pcb-fin"></div></div></div>
+    <div class="p-card team" id="pc-team"><div class="p-card-name">Team &amp; Leadership</div><div class="p-card-score" id="pcs-team">0</div><div class="p-card-max">/ 57 pts</div><div class="p-card-bar"><div class="p-card-bar-fill" id="pcb-team"></div></div></div>
   </div>
 
   <!-- 00: BUSINESS CONTEXT -->
@@ -451,57 +451,57 @@ footer p{font-size:13px;color:var(--gray-400)}
 <script>
 // ─── DATA ─────────────────────────────────────────────────────────
 const FACTORS = [
-  // OPS & SYSTEMS — max 72
+  // OPS & SYSTEMS — max 63
   {id:1,  p:'ops',  n:'SOP Documentation',           wt:3, s1:'Some SOPs exist but outdated or incomplete.',                         s2:'Few SOPs. Most processes in people\'s heads.',                                         s3:'Zero documentation. Every task improvised.'},
-  {id:2,  p:'ops',  n:'Tech Stack Integration',      wt:2, s1:'Tools exist but some redundancy.',                                    s2:'Fragmented. Multiple tools doing same thing.',                                         s3:'No coherent stack. Spreadsheets and sticky notes.'},
+  {id:2,  p:'ops',  n:'Tech Stack Integration',      wt:1, s1:'Tools exist but some redundancy.',                                    s2:'Fragmented. Multiple tools doing same thing.',                                         s3:'No coherent stack. Spreadsheets and sticky notes.'},
   {id:3,  p:'ops',  n:'Workflow Consistency',        wt:3, s1:'Workflows exist informally.',                                         s2:'Inconsistent. Different people do same process differently.',                          s3:'No mapped workflows. Every client gets a different experience.'},
   {id:4,  p:'ops',  n:'Reporting & KPI Tracking',   wt:2, s1:'Some metrics tracked but not consistently.',                          s2:'Few KPIs. Gut feel decisions.',                                                        s3:'No metrics. No reporting. Zero visibility.'},
   {id:5,  p:'ops',  n:'Bottleneck & Dependency',    wt:3, s1:'Founder involved in most decisions.',                                 s2:'Founder is bottleneck for most decisions.',                                            s3:'Everything runs through one person. Business stops without them.'},
-  {id:6,  p:'ops',  n:'Quality Control Systems',    wt:2, s1:'Some QC. Errors caught most of the time.',                            s2:'QC reactive. Errors caught when clients complain.',                                    s3:'No QC. Errors endemic. Constant rework.'},
+  {id:6,  p:'ops',  n:'Quality Control Systems',    wt:1, s1:'Some QC. Errors caught most of the time.',                            s2:'QC reactive. Errors caught when clients complain.',                                    s3:'No QC. Errors endemic. Constant rework.'},
   {id:7,  p:'ops',  n:'Client Delivery Process',    wt:3, s1:'Loosely documented. Details vary.',                                  s2:'No formal process. Each engagement handled differently.',                             s3:'Chaos. No standard delivery. Scope creep constant.'},
   {id:8,  p:'ops',  n:'Internal Communication',     wt:1, s1:'Communicates but informal.',                                          s2:'Scattered across text, email, DM.',                                                    s3:'No system. Silos. Miscommunication common.'},
-  {id:9,  p:'ops',  n:'Project Management',         wt:2, s1:'PM tool exists but underutilized.',                                   s2:'No PM tool. Tasks managed by memory.',                                                 s3:'No task management. Deadlines missed regularly.'},
+  {id:9,  p:'ops',  n:'Project Management',         wt:1, s1:'PM tool exists but underutilized.',                                   s2:'No PM tool. Tasks managed by memory.',                                                 s3:'No task management. Deadlines missed regularly.'},
   {id:10, p:'ops',  n:'Business Continuity',        wt:3, s1:'Founder can step away for a few days.',                               s2:'Business deteriorates within a week without founder.',                                 s3:'Cannot function 48 hours without founder.'},
-  // REVENUE & SALES — max 69
+  // REVENUE & SALES — max 60
   {id:11, p:'rev',  n:'Lead Generation System',     wt:3, s1:'Leads come in but inconsistent.',                                     s2:'Sporadic. Referrals and word of mouth only.',                                          s3:'No lead gen. Pipeline empty unless founder hustles.'},
   {id:12, p:'rev',  n:'Sales Process Documentation',wt:3, s1:'Process exists informally.',                                          s2:'No documented process. Each rep sells differently.',                                   s3:'No sales process. Owner sells on instinct.'},
-  {id:13, p:'rev',  n:'Conversion Tracking',        wt:2, s1:'Close rate tracked loosely.',                                         s2:'Not formally tracked.',                                                                s3:'No conversion data at all.'},
+  {id:13, p:'rev',  n:'Conversion Tracking',        wt:1, s1:'Close rate tracked loosely.',                                         s2:'Not formally tracked.',                                                                s3:'No conversion data at all.'},
   {id:14, p:'rev',  n:'Follow-Up & Nurture',        wt:2, s1:'Some follow-up but manual.',                                          s2:'Ad hoc. Reps follow up when they remember.',                                           s3:'Zero follow-up. One call, gone.'},
   {id:15, p:'rev',  n:'Offer Clarity & Differentiation', wt:3, s1:'Clear to existing clients but not sharp.',                      s2:'Vague. Competes on price.',                                                            s3:'No defined offer.'},
   {id:16, p:'rev',  n:'Pricing Strategy',           wt:3, s1:'Set but not reviewed recently.',                                      s2:'Arbitrary. Frequent discounts.',                                                       s3:'No strategy. Made up per deal.'},
   {id:17, p:'rev',  n:'Revenue Concentration',      wt:2, s1:'Top client 15–25% of revenue.',                                      s2:'Top 2–3 clients are 40–60%.',                                                          s3:'One client 30%+ or top 3 are 70%+.'},
-  {id:18, p:'rev',  n:'Client Retention & Churn',  wt:2, s1:'Most stay. Some churn, reasons unclear.',                             s2:'Noticeable churn. No system.',                                                         s3:'High churn. Constant need for new clients.'},
+  {id:18, p:'rev',  n:'Client Retention & Churn',  wt:1, s1:'Most stay. Some churn, reasons unclear.',                             s2:'Noticeable churn. No system.',                                                         s3:'High churn. Constant need for new clients.'},
   {id:19, p:'rev',  n:'Upsell / Cross-Sell',        wt:1, s1:'Some upselling organic. No system.',                                 s2:'No upsell process.',                                                                   s3:'No awareness of opportunity.'},
-  {id:20, p:'rev',  n:'Marketing ROI Tracking',     wt:2, s1:'Some spend tracked.',                                                s2:'Not tracked. No idea which channels work.',                                            s3:'Spending with zero tracking.'},
-  // FINANCIAL STRUCTURE — max 66
+  {id:20, p:'rev',  n:'Marketing ROI Tracking',     wt:1, s1:'Some spend tracked.',                                                s2:'Not tracked. No idea which channels work.',                                            s3:'Spending with zero tracking.'},
+  // FINANCIAL STRUCTURE — max 60
   {id:21, p:'fin',  n:'Profit Margin Visibility',   wt:3, s1:'Margins known at high level.',                                        s2:'Rough idea. Gut feel.',                                                                s3:'No idea what real margin is.'},
   {id:22, p:'fin',  n:'Cash Flow Predictability',   wt:3, s1:'Mostly predictable. Occasional tight months.',                        s2:'Volatile. Can\'t forecast.',                                                           s3:'Crisis. Invoice to invoice.'},
-  {id:23, p:'fin',  n:'Expense Discipline',         wt:2, s1:'Monitored loosely.',                                                 s2:'No recent audit. Waste evident.',                                                      s3:'Completely unmanaged.'},
+  {id:23, p:'fin',  n:'Expense Discipline',         wt:1, s1:'Monitored loosely.',                                                 s2:'No recent audit. Waste evident.',                                                      s3:'Completely unmanaged.'},
   {id:24, p:'fin',  n:'Debt Structure',             wt:2, s1:'Some debt, manageable.',                                             s2:'Multiple instruments. Some bad terms.',                                                s3:'Toxic: MCAs, high-interest.'},
   {id:25, p:'fin',  n:'Financial Forecasting',      wt:2, s1:'Basic forecasting quarterly.',                                       s2:'No formal forecasting.',                                                               s3:'No forecasting. Zero visibility.'},
   {id:26, p:'fin',  n:'Pricing Model Effectiveness',wt:3, s1:'Works but could be more strategic.',                                 s2:'Cost-plus. Underpriced.',                                                              s3:'No model. Invented per deal.'},
   {id:27, p:'fin',  n:'Revenue Model Sustainability',wt:2, s1:'Overly dependent on one-time transactions.',                        s2:'Entirely project-based. No recurring.',                                                s3:'Broken. Every month starts at zero.'},
   {id:28, p:'fin',  n:'Funding Readiness',          wt:1, s1:'Could access some funding.',                                         s2:'Business credit underdeveloped.',                                                      s3:'No business credit.'},
   {id:29, p:'fin',  n:'Invoicing & Collections',   wt:2, s1:'Regular invoicing. Most on time.',                                    s2:'Inconsistent. AR aging 30+.',                                                          s3:'Chaotic. No system.'},
-  {id:30, p:'fin',  n:'Financial Reporting Cadence',wt:2, s1:'P&L reviewed quarterly.',                                            s2:'Reports pulled annually for taxes.',                                                   s3:'No reporting at all.'},
-  // TEAM & LEADERSHIP — max 63
+  {id:30, p:'fin',  n:'Financial Reporting Cadence',wt:1, s1:'P&L reviewed quarterly.',                                            s2:'Reports pulled annually for taxes.',                                                   s3:'No reporting at all.'},
+  // TEAM & LEADERSHIP — max 57
   {id:31, p:'team', n:'Org Chart & Role Clarity',  wt:3, s1:'Exists but not current.',                                             s2:'No formal chart. Roles blur.',                                                         s3:'Total chaos. Everyone does everything.'},
   {id:32, p:'team', n:'Talent Quality in Key Seats',wt:3, s1:'Most key seats competent.',                                          s2:'Several underperformers in key seats.',                                                 s3:'Wrong people in critical roles.'},
   {id:33, p:'team', n:'Performance Metrics Per Role',wt:2, s1:'Some roles have metrics.',                                          s2:'Few or no individual metrics.',                                                        s3:'No metrics for anyone.'},
   {id:34, p:'team', n:'Delegation Maturity',       wt:3, s1:'Delegates some but takes back.',                                      s2:'Delegates reluctantly. Micromanages.',                                                 s3:'Does everything. Can\'t let go.'},
   {id:35, p:'team', n:'Hiring Pipeline & Process', wt:2, s1:'Reactive but functional.',                                            s2:'No process. Picks least bad option.',                                                  s3:'No hiring capability.'},
-  {id:36, p:'team', n:'Onboarding & Training',     wt:2, s1:'Some onboarding. Basic.',                                             s2:'No formal onboarding.',                                                                s3:'Zero onboarding.'},
+  {id:36, p:'team', n:'Onboarding & Training',     wt:1, s1:'Some onboarding. Basic.',                                             s2:'No formal onboarding.',                                                                s3:'Zero onboarding.'},
   {id:37, p:'team', n:'Accountability Framework',  wt:2, s1:'Some accountability.',                                                s2:'No framework. Honor system.',                                                          s3:'No accountability at all.'},
   {id:38, p:'team', n:'Culture & Retention',       wt:1, s1:'Generally positive.',                                                 s2:'Undefined. Not engaged.',                                                              s3:'Toxic or nonexistent.'},
   {id:39, p:'team', n:'Leadership Development',    wt:1, s1:'Some potential leaders.',                                             s2:'No development. Founder is only leader.',                                              s3:'Leadership vacuum.'},
-  {id:40, p:'team', n:'Succession Planning',       wt:2, s1:'Thought about but nothing documented.',                               s2:'No planning. Business struggles in 30 days.',                                          s3:'No plan. Collapses in weeks.'},
+  {id:40, p:'team', n:'Succession Planning',       wt:1, s1:'Thought about but nothing documented.',                               s2:'No planning. Business struggles in 30 days.',                                          s3:'No plan. Collapses in weeks.'},
 ];
 
 const PILLARS = {
-  ops:  {label:'Operations & Systems',  icon:'⚙',  num:'01', max:72, secEl:'sec-ops',  stEl:'st-ops',  pcsEl:'pcs-ops',  pcbEl:'pcb-ops',  pcEl:'pc-ops',  bdgEl:'bdg-ops'},
-  rev:  {label:'Revenue & Sales',       icon:'⚡', num:'02', max:69, secEl:'sec-rev',  stEl:'st-rev',  pcsEl:'pcs-rev',  pcbEl:'pcb-rev',  pcEl:'pc-rev',  bdgEl:'bdg-rev'},
-  fin:  {label:'Financial Structure',   icon:'◉',  num:'03', max:66, secEl:'sec-fin',  stEl:'st-fin',  pcsEl:'pcs-fin',  pcbEl:'pcb-fin',  pcEl:'pc-fin',  bdgEl:'bdg-fin'},
-  team: {label:'Team & Leadership',     icon:'◈',  num:'04', max:63, secEl:'sec-team', stEl:'st-team', pcsEl:'pcs-team', pcbEl:'pcb-team', pcEl:'pc-team', bdgEl:'bdg-team'},
+  ops:  {label:'Operations & Systems',  icon:'⚙',  num:'01', max:63, secEl:'sec-ops',  stEl:'st-ops',  pcsEl:'pcs-ops',  pcbEl:'pcb-ops',  pcEl:'pc-ops',  bdgEl:'bdg-ops'},
+  rev:  {label:'Revenue & Sales',       icon:'⚡', num:'02', max:60, secEl:'sec-rev',  stEl:'st-rev',  pcsEl:'pcs-rev',  pcbEl:'pcb-rev',  pcEl:'pc-rev',  bdgEl:'bdg-rev'},
+  fin:  {label:'Financial Structure',   icon:'◉',  num:'03', max:60, secEl:'sec-fin',  stEl:'st-fin',  pcsEl:'pcs-fin',  pcbEl:'pcb-fin',  pcEl:'pc-fin',  bdgEl:'bdg-fin'},
+  team: {label:'Team & Leadership',     icon:'◈',  num:'04', max:57, secEl:'sec-team', stEl:'st-team', pcsEl:'pcs-team', pcbEl:'pcb-team', pcEl:'pc-team', bdgEl:'bdg-team'},
 };
 
 const scores = {}; // id -> 0|1|2|3
@@ -684,10 +684,12 @@ function updateTotals() {
 function getTier(score) {
   const scored = Object.keys(scores).length;
   if (!scored||score===0) return {tier:'—',cls:''};
-  if (score<=50)  return {tier:'Tune-Up',  cls:'tune-up'};
-  if (score<=120) return {tier:'Rebuild',  cls:'rebuild'};
-  if (score<=200) return {tier:'Overhaul', cls:'overhaul'};
-  return               {tier:'Emergency',cls:'emergency'};
+  const max = Object.values(PILLARS).reduce((s,p)=>s+p.max,0);
+  const pct = Math.round((score/max)*100);
+  if (pct<=21) return {tier:'Tune-Up',  cls:'tune-up'};
+  if (pct<=50) return {tier:'Rebuild',  cls:'rebuild'};
+  if (pct<=83) return {tier:'Overhaul', cls:'overhaul'};
+  return            {tier:'Emergency',cls:'emergency'};
 }
 
 // ─── SEVERITY TOGGLE ─────────────────────────────────────────────
